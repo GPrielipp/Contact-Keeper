@@ -1,4 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://contact-keeper-user:5Sb3wl5umHqZ3Hti@react-contact-keeper-cl.m6cv2.mongodb.net/react-contact-keeper-cluster?retryWrites=true&w=majority",
-  "jwtSecret": "verySecretiveSecretKeyValue"
-}
