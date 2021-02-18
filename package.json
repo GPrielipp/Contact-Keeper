@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Contact manager application",
-  "main": "server.js",
+  "main": "backend/server.js",
   "engines": {
     "node": "15.x",
     "npm": "7.x"
