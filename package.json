@@ -13,7 +13,7 @@
     "client": "npm start --prefix ../client",
     "clientinstall": "npm install --prefix ../client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix ../client && npm run build --prefix",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "startClient": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -28,9 +28,6 @@
     "express-validator": "^6.9.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.15",
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/free-solid-svg-icons": "^5.15.2",
-    "@fortawesome/react-fontawesome": "^0.1.14",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
@@ -40,7 +37,6 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "react-transition-group": "^4.4.1",
-    "uuid": "^8.3.2",
     "web-vitals": "^1.1.0"
   },
   "devDependencies": {
