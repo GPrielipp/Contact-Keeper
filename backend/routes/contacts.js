@@ -33,7 +33,6 @@ router.post(
     }
     // create the contact
     const { name, email, phone, type } = req.body;
-
     try {
       const newContact = new Contact({
         name,

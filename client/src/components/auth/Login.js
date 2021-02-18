@@ -1,10 +1,26 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AuthContext from '../../context/auth/authContext';
+import AlertContext from '../../context/alert/alertContext';
 
-const Login = () => {
+const Login = (props) => {
   const authContext = useContext(AuthContext);
+  const alertContext = useContext(AlertContext);
 
-  const { loginUser } = authContext;
+  const { loginUser, error, clearErrors, isAuthenticated } = authContext;
+  const { setAlert } = alertContext;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/');
+    }
+
+    if (error !== null && error !== undefined) {
+      console.error(error);
+      setAlert(error, 'danger');
+      clearErrors();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error, isAuthenticated, props.history]);
 
   const [user, setUser] = useState({
     email: '',
@@ -22,8 +38,12 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // register user
-    console.log('Login submit', user);
+    if (email === '' || password === '') {
+      setAlert('Please fill in all fields', 'warning');
+    } else {
+      // login user
+      loginUser(user);
+    }
   };
 
   return (

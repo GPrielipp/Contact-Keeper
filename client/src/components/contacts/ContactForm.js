@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect, useMemo } from 'react';
 import ContactContext from '../../context/contact/contactContext';
+import AlertContext from '../../context/alert/alertContext';
 
 const ContactForm = () => {
   const DEFAULT_CONTACT = useMemo(() => {
@@ -12,10 +13,25 @@ const ContactForm = () => {
   }, []);
 
   const contactContext = useContext(ContactContext);
-  const { current, addContact, clearCurrent, updateContact } = contactContext;
+  const {
+    current,
+    addContact,
+    clearCurrent,
+    updateContact,
+    error,
+  } = contactContext;
+
+  const alertContext = useContext(AlertContext);
+  const { setAlert } = alertContext;
+  useEffect(() => {
+    if (error !== null && error !== undefined) {
+      setAlert(error, 'danger');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error]);
 
   useEffect(() => {
-    if (current != null) {
+    if (current !== null) {
       setContact(current);
     } else {
       setContact(DEFAULT_CONTACT);
@@ -24,7 +40,7 @@ const ContactForm = () => {
 
   const [contact, setContact] = useState(DEFAULT_CONTACT);
 
-  const { id, name, email, phone, type } = contact;
+  const { _id, name, email, phone, type } = contact;
 
   const onChange = (e) => {
     setContact({
@@ -37,7 +53,7 @@ const ContactForm = () => {
     e.preventDefault();
     if (current) {
       updateContact(contact);
-      clearCurrent(id);
+      clearCurrent(_id);
     } else {
       addContact(contact);
     }
@@ -46,7 +62,7 @@ const ContactForm = () => {
   };
 
   const clearAllFields = (e) => {
-    clearCurrent(id);
+    clearCurrent(_id);
   };
 
   return (
